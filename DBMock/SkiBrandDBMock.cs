@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Interfaces;
 
 namespace DBMock
 {
-    internal class SkiBrandDBMock
+    public class SkiBrandDBMock: ISkiBrand
     {
+        public int BrandId { get; set; }
+        public string Name { get; set; }
+        public string Country { get; set; }
+        public int FoundationYear { get; set; }
     }
 }

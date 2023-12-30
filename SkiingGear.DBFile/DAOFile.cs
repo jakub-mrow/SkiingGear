@@ -13,10 +13,11 @@ namespace SkiingGear.DBFile
             skiis = new List<ISkiis>();
             skiBrands = new List<ISkiBrand>();
 
-
             AddNewSkiBrand(new SkiBrandDBFile() { BrandId = 1, Country = "Germany", FoundationYear = 1960, Name = "Volkl" });
             AddNewSkiBrand(new SkiBrandDBFile() { BrandId = 2, Country = "Austria", FoundationYear = 1924, Name = "Atomic" });
             AddNewSkiBrand(new SkiBrandDBFile() { BrandId = 3, Country = "Switzerland", FoundationYear = 1947, Name = "Head" });
+
+            SaveSkiBrands();
 
 
             AddNewSkiis(new SkiisDBFile() { Id = 1, Length = 160, Price = 1100, Type = SkiType.AllMountain, Brand = skiBrands[0], Model = "RaceTiger" });
@@ -70,6 +71,14 @@ namespace SkiingGear.DBFile
                 Brand = skiBrands[2],
                 Model = "Gravity"
             });
+
+            SaveSkiis();
+        }
+
+        public DAOFile(string skiBrandsDBFile, string skiisDBFile)
+        {
+            skiis = Serializer.Deserialize<ISkiis>(skiisDBFile);
+            skiBrands = Serializer.Deserialize<ISkiBrand>(skiBrandsDBFile);
         }
 
 

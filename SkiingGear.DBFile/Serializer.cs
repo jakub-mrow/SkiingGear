@@ -13,5 +13,13 @@ namespace SkiingGear.DBFile
                 new BinaryFormatter().Serialize(fileStream, output);
             }
         }
+
+        public static List<T> Deserialize<T>(string filePath)
+        {
+            using (FileStream fileStream = new FileStream(filePath, FileMode.OpenOrCreate))
+            {
+                return (List<T>)new BinaryFormatter().Deserialize(fileStream);
+            }
+        }
     }
 }

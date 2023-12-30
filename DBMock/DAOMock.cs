@@ -1,4 +1,5 @@
-﻿using Interfaces;
+﻿using Core;
+using Interfaces;
 
 namespace DBMock
 {
@@ -17,7 +18,57 @@ namespace DBMock
             AddNewSkiBrand(new SkiBrandDBMock() { BrandId = 3, Country = "Switzerland", FoundationYear = 1947, Name = "Head" });
 
 
-            AddNewSkiis(new SkiisDBMock() { });
+            AddNewSkiis(new SkiisDBMock() { Id = 1, Length = 160, Price = 1100, Type = SkiType.AllMountain, Brand = skiBrands[0], Model = "RaceTiger" });
+
+            AddNewSkiis(new SkiisDBMock()
+            {
+                Id = 2,
+                Length = 165,
+                Price = 1200,
+                Type = SkiType.Slalom,
+                Brand = skiBrands[1],
+                Model = "Speedster"
+            });
+
+            AddNewSkiis(new SkiisDBMock()
+            {
+                Id = 3,
+                Length = 170,
+                Price = 1300,
+                Type = SkiType.Freestyle,
+                Brand = skiBrands[2],
+                Model = "Airborne"
+            });
+
+            AddNewSkiis(new SkiisDBMock()
+            {
+                Id = 4,
+                Length = 175,
+                Price = 1400,
+                Type = SkiType.AllMountain,
+                Brand = skiBrands[0],
+                Model = "Explorer"
+            });
+
+            AddNewSkiis(new SkiisDBMock()
+            {
+                Id = 5,
+                Length = 160,
+                Price = 1200,
+                Type = SkiType.Slalom,
+                Brand = skiBrands[1],
+                Model = "Rocket"
+            });
+
+            AddNewSkiis(new SkiisDBMock()
+            {
+                Id = 6,
+                Length = 165,
+                Price = 1100,
+                Type = SkiType.Freestyle,
+                Brand = skiBrands[2],
+                Model = "Gravity"
+            });
         }
 
         public IEnumerable<ISkiBrand> GetAllSkiBrands()
