@@ -20,7 +20,7 @@ namespace SkiingGear.DBSQL
 
             Add(addedSkiBrand);
 
-            SaveChanges();
+            //SaveChanges();
             newSkiBrand.BrandId = addedSkiBrand.BrandId;
             return newSkiBrand;
         }
