@@ -1,0 +1,253 @@
+﻿@page "/skiis"
+
+<PageTitle>Skis</PageTitle>
+@using DBMock
+@using Interfaces
+@using Core
+@using SkiingGearBlazor.Data
+@inject SkiingGearBLService SkiingGearService
+
+
+<style>
+    .custom-select {
+        width: 200px;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+</style>
+
+@if (skis == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="container mt-3">
+        <h1>Skiis</h1>
+        <div class="input-group mb-3">
+            <label for="searchSkiModel" class="input-group-text">Search Model:</label>
+            <input id="searchSkiModel" type="text" @bind="searchSkiModel" />
+            <button class="btn btn-primary" @onclick="SearchSkis">Search</button>
+        </div>
+        <div class="form-group">
+            <label>Filter Ski Type:</label>
+            <select id="filterSkiType" class="custom-select" @bind="chosenFilterSkiType">
+                @foreach (SkiType skiType in Enum.GetValues(typeof(SkiType)))
+                {
+                    <option value="@skiType">@skiType.ToString()</option>
+                }
+            </select>
+            <button class="btn btn-primary" @onclick="FilterSkiisBySkiType">Filter</button>
+            <button class="btn btn-secondary" @onclick="ResetFilters">Reset</button>
+        </div>
+    </div>
+
+
+    <div class="container mt-3">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Model</th>
+                    <th>Brand</th>
+                    <th>Type</th>
+                    <th>Length</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ski in displayedSkis)
+                {
+                    <tr>
+                        <td>@ski.Model</td>
+                        <td>@ski.Brand.Name</td>
+                        <td>@ski.Type</td>
+                        <td>@ski.Length</td>
+                        <td>@ski.Price</td>
+                        <td>
+                            <button class="btn btn-danger" @onclick="() => RemoveSki(ski)">X</button>
+                            <button class="btn btn-primary" @onclick="() => ShowUpdateForm(ski)">Edit</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- Add New Ski Form -->
+    <div class="container mt-3">
+        <h3>Add new skiis</h3>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="newSkiModel">Model:</label>
+                    <input id="newSkiModel" class="form-control" @bind="newSki.Model" />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="newSkiBrand">Brand:</label>
+                    <select id="newSkiBrand" class="form-control" @bind="newSkiisSelectedBrand">
+                        @foreach (var brand in skiBrands)
+                        {
+                            <option value="@brand.BrandId">@brand.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="newSkiType">Type:</label>
+                    <select id="newSkiType" class="form-control" @bind="newSki.Type">
+                        @foreach (SkiType skiType in Enum.GetValues(typeof(SkiType)))
+                        {
+                            <option value="@skiType">@skiType.ToString()</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="newSkiLength">Length:</label>
+                    <input id="newSkiLength" class="form-control" @bind="newSki.Length" />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="newSkiPrice">Price:</label>
+                    <input id="newSkiPrice" class="form-control" @bind="newSki.Price" />
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary mt-3" @onclick="AddNewSki">Add Skiis</button>
+    </div>
+
+  
+    <!-- Update Ski Form -->
+    @if (isUpdateFormVisible)
+    {
+        <div class="container mt-3">
+            <h3>Update Form</h3>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="updateSkiModel">Model:</label>
+                        <input id="updateSkiModel" class="form-control" @bind="selectedSki.Model" />
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="updateSkiBrand">Brand:</label>
+                        <select id="updateSkiBrand" class="form-control" @bind="updatedSkiisSelectedBrand">
+                            @foreach (var brand in skiBrands)
+                            {
+                                <option value="@brand.BrandId">@brand.Name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="updateSkiType">Type:</label>
+                        <input id="updateSkiType" class="form-control" @bind="selectedSki.Type" />
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="updateSkiLength">Length:</label>
+                        <input id="updateSkiLength" class="form-control" @bind="selectedSki.Length" />
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="updateSkiPrice">Price:</label>
+                        <input id="updateSkiPrice" class="form-control" @bind="selectedSki.Price" />
+                    </div>
+                </div>
+            </div>
+            <div class="mt-3">
+                <button class="btn btn-success" @onclick="UpdateSki">Update Skiis</button>
+                <button class="btn btn-primary" @onclick="CloseEditForm">Close</button>
+            </div>
+            
+        </div>
+    }
+}
+
+@code {
+    private IEnumerable<ISkiis>? skis;
+    private IEnumerable<ISkiis> displayedSkis;
+    private ISkiis newSki = new SkiisModel();
+
+    private ISkiis selectedSki;
+    private string searchSkiModel = "";
+    private bool isUpdateFormVisible = false;
+    private IEnumerable<ISkiBrand> skiBrands;
+    private int newSkiisSelectedBrand;
+    private int updatedSkiisSelectedBrand;
+    private SkiType chosenFilterSkiType;
+
+    protected override void OnInitialized()
+    {
+        skis = SkiingGearService.GetAllSkiis();
+        displayedSkis = skis;
+        skiBrands = SkiingGearService.GetSkiBrands();
+    }
+
+    private void AddNewSki()
+    {
+        var brand = skiBrands.FirstOrDefault(brand => brand.BrandId == newSkiisSelectedBrand);
+
+        SkiingGearService.AddNewSkiis(new SkiisModel
+            {
+                Model = newSki.Model,
+                Brand = brand,
+                Type = newSki.Type,
+                Length = newSki.Length,
+                Price = newSki.Price
+            });
+    }
+
+    private void RemoveSki(ISkiis ski)
+    {
+        SkiingGearService.DeleteSkiis(ski.Id);
+    }
+
+    private void ShowUpdateForm(ISkiis ski)
+    {
+        selectedSki = ski;
+        isUpdateFormVisible = true;
+    }
+
+    private void UpdateSki()
+    {
+        var brand = skiBrands.FirstOrDefault(brand => brand.BrandId == updatedSkiisSelectedBrand);
+        selectedSki.Brand = brand;
+        SkiingGearService.UpdateSkiis(selectedSki);
+        isUpdateFormVisible = false;
+    }
+
+    private void SearchSkis()
+    {
+        displayedSkis = SkiingGearService.FindSkiisByModel(searchSkiModel);
+    }
+
+    private void CloseEditForm()
+    {
+        isUpdateFormVisible = false;
+    }
+
+    private void FilterSkiisBySkiType()
+    {
+        displayedSkis = SkiingGearService.FilterSkiisBySkiType(chosenFilterSkiType);
+    }
+
+    private void ResetFilters()
+    {
+        skis = SkiingGearService.GetAllSkiis();
+        displayedSkis = skis;
+    }
+}

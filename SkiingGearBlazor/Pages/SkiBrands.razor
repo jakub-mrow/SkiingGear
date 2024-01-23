@@ -1,0 +1,184 @@
+﻿@page "/skibrands"
+
+<PageTitle>Ski brands</PageTitle>
+@using DBMock
+@using Interfaces
+@using SkiingGearBlazor.Data
+@inject SkiingGearBLService SkiingGearService
+
+@if (skiBrands == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="container mt-3">
+        <h1>Ski Brands</h1>
+        <div class="input-group mb-3">
+            <label for="searchBrandName" class="input-group-text">Search Brand:</label>
+            <input id="searchBrandName" @bind="searchBrandName" />
+            <button class="btn btn-primary" @onclick="SearchSkiBrands">Search</button>
+
+            <!-- Add spacing between search and reset buttons -->
+            <div class="input-group-append" style="margin-left: 10px;">
+                <button class="btn btn-secondary" @onclick="ResetFilters">Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-3">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Country</th>
+                    <th>Foundation year</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var skiBrand in displayedSkiBrands)
+                {
+                    <tr>
+                        <td>@skiBrand.Name</td>
+                        <td>@skiBrand.Country</td>
+                        <td>@skiBrand.FoundationYear</td>
+                        <td>
+                            <button class="btn btn-danger" @onclick="() => RemoveSkiBrand(skiBrand)">X</button>
+                            <button class="btn btn-primary" @onclick="() => ShowUpdateForm(skiBrand)">Edit</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container mt-3">
+        <h3>Add new ski brand</h3>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="newBrandName">Name:</label>
+                    <input id="newBrandName" class="form-control" @bind="newSkiBrand.Name" />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="newBrandCountry">Country:</label>
+                    <input id="newBrandCountry" class="form-control" @bind="newSkiBrand.Country" />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="newBrandFoundationYear">Foundation Year:</label>
+                    <input id="newBrandFoundationYear" class="form-control" @bind="newSkiBrand.FoundationYear" />
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn-primary mt-3" @onclick="AddNewSkiBrand">Add Ski Brand</button>
+    </div>
+
+    <!-- Update Ski Brand Form -->
+    @if (isUpdateFormVisible)
+    {
+        <div class="container mt-3">
+            <h3>Update Ski Brand</h3>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="updateBrandName">Name:</label>
+                        <input id="updateBrandName" class="form-control" @bind="selectedSkiBrand.Name" />
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="updateBrandCountry">Country:</label>
+                        <input id="updateBrandCountry" class="form-control" @bind="selectedSkiBrand.Country" />
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="updateBrandFoundationYear">Foundation Year:</label>
+                        <input id="updateBrandFoundationYear" class="form-control" @bind="selectedSkiBrand.FoundationYear" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-3">
+                <button class="btn btn-success" @onclick="UpdateSkiBrand">Update Ski Brand</button>
+                <button class="btn btn-primary" @onclick="CloseEditForm">Close</button>
+            </div>
+        </div>
+
+    }
+}
+
+@code {
+    private IEnumerable<ISkiBrand>? skiBrands;
+    private IEnumerable<ISkiBrand> displayedSkiBrands;
+    private ISkiBrand newSkiBrand = new SkiBrandModel();
+    private ISkiBrand selectedSkiBrand;
+    private string searchBrandName = "";
+    private bool isUpdateFormVisible = false;
+
+    private bool isNewSkiBrandAdded = false;
+
+
+    protected override void OnInitialized()
+    {
+        skiBrands = SkiingGearService.GetSkiBrands();
+        displayedSkiBrands = skiBrands;
+
+        if (isNewSkiBrandAdded)
+        {
+            StateHasChanged(); // Trigger a refresh
+            isNewSkiBrandAdded = false; // Reset the flag
+        }
+    }
+
+    private void AddNewSkiBrand()
+    {
+        SkiingGearService.AddNewSkiBrand(new SkiBrandModel
+            {
+                Name = newSkiBrand.Name,
+                Country = newSkiBrand.Country,
+                FoundationYear = newSkiBrand.FoundationYear
+            });
+
+        isNewSkiBrandAdded = true;
+    }
+
+    private void RemoveSkiBrand(ISkiBrand skiBrand)
+    {
+        SkiingGearService.RemoveSkiBrand(skiBrand);
+    }
+
+    private void ShowUpdateForm(ISkiBrand skiBrand)
+    {
+        selectedSkiBrand = skiBrand;
+        isUpdateFormVisible = true;
+    }
+
+    private void UpdateSkiBrand()
+    {
+        SkiingGearService.UpdateSkiBrand(selectedSkiBrand);
+        isUpdateFormVisible = false;
+    }
+
+    private void SearchSkiBrands()
+    {
+        displayedSkiBrands = SkiingGearService.FindSkiBrandByName(searchBrandName);
+    }
+
+    private void CloseEditForm()
+    {
+        isUpdateFormVisible = false;
+    }
+
+    private void ResetFilters()
+    {
+        skiBrands = SkiingGearService.GetSkiBrands();
+        displayedSkiBrands = skiBrands;
+    }
+}

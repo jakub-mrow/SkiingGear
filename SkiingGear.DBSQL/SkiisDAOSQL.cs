@@ -11,7 +11,7 @@ namespace SkiingGear.DBSQL
     {
         public IEnumerable<ISkiis> GetAllSkiis()
         {
-            return Skiis.Select(skiis => skiis.ToISkiis(SkiBrands.ToList()));
+            return _context.Skiis.Select(skiis => skiis.ToISkiis(_context.SkiBrands.ToList()));
         }
 
         public ISkiis AddNewSkiis(ISkiis newSkiis)
@@ -25,30 +25,30 @@ namespace SkiingGear.DBSQL
                 BrandId = newSkiis.Brand.BrandId
             };
 
-            Add(addedNewSkiis);
-            SaveChanges();
+            _context.Add(addedNewSkiis);
+            _context.SaveChanges();
             newSkiis.Id = addedNewSkiis.Id;
             return newSkiis;
         }
 
         public void RemoveSkiis(int SkiisId)
         {
-            var skiis = Skiis.FirstOrDefault(skiis => skiis.Id == SkiisId);
-            Remove(skiis);
-            SaveChanges();
+            var skiis = _context.Skiis.FirstOrDefault(skiis => skiis.Id == SkiisId);
+            _context.Remove(skiis);
+            _context.SaveChanges();
 
         }
 
         public void UpdateSkiis(ISkiis newUpdatedSkiis)
         {
-            var skiis = Skiis.FirstOrDefault(skiis => skiis.Id == newUpdatedSkiis.Id);
+            var skiis = _context.Skiis.FirstOrDefault(skiis => skiis.Id == newUpdatedSkiis.Id);
             skiis.Model = newUpdatedSkiis.Model;
             skiis.Length = newUpdatedSkiis.Length;
             skiis.Type = newUpdatedSkiis.Type;
             skiis.BrandId = newUpdatedSkiis.Brand.BrandId;
             skiis.Price = newUpdatedSkiis.Price;
 
-            Entry(skiis).CurrentValues.SetValues(skiis);
+            _context.Entry(skiis).CurrentValues.SetValues(skiis);
 
         }
     }

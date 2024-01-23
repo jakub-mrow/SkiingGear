@@ -1,16 +1,84 @@
 ﻿using Core;
 using Interfaces;
-using SkiingGear.DBSQL;
+using System.Reflection;
 
 namespace BL
 {
     public class BL
     {
         private IDAO dao;
+        private static BL instance;
+        private static readonly object lockObject = new object();
 
-        public BL()
+        public BL(string filePath)
         {
-            dao = new DAOSQL();
+            if (filePath.EndsWith(".dll"))
+                LoadLibrary(filePath);
+        }
+
+        public static BL GetInstance(string filePath)
+        {
+            if (instance == null)
+            {
+                lock (lockObject)
+                {
+                    if (instance == null)
+                    {
+                        instance = new BL(filePath);
+                    }
+                } 
+            }
+
+            return instance;
+        }
+
+        public void LoadLibrary(string dllPath)
+        {
+            var typeToCreate = FindDAOType(dllPath);
+
+            if (typeToCreate != null)
+            {
+                dao = CreateDAOInstance(typeToCreate);
+            }
+            else
+            {
+                throw new InvalidOperationException("No compatible IDAO type found in assembly.");
+            }
+        }
+
+        private Type FindDAOType(string dllPath)
+        {
+            try
+            {
+                var assembly = Assembly.UnsafeLoadFrom(dllPath);
+                foreach (var type in assembly.GetTypes())
+                {
+                    if (typeof(IDAO).IsAssignableFrom(type))
+                    {
+                        return type;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Failed to load assembly or find IDAO: " + ex.Message);
+                throw;
+            }
+
+            return null;
+        }
+
+        private IDAO CreateDAOInstance(Type daoType)
+        {
+            try
+            {
+                return (IDAO)Activator.CreateInstance(daoType);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Failed to create instance of IDAO: {daoType.Name}\n{ex.Message}");
+                throw;
+            }
         }
 
         public IEnumerable<ISkiBrand> GetAllSkiBrands() => dao.GetAllSkiBrands();
@@ -19,7 +87,18 @@ namespace BL
         public IEnumerable<ISkiBrand> GetSkiBrand(int BrandId) => dao.GetAllSkiBrands().Where(skiBrand => skiBrand.BrandId.Equals(BrandId));
         public IEnumerable<ISkiis> GetSkiis(int SkiiId) => dao.GetAllSkiis().Where(skiis => skiis.Id.Equals(SkiiId));
 
-        public void RemoveSkiBrand(int BrandId) => dao.RemoveSkiBrand(BrandId);
+        public void RemoveSkiBrand(int BrandId)
+        {
+            IEnumerable<ISkiis> skiisToDelete = dao.GetAllSkiis().Where(skiis => skiis.Brand.BrandId.Equals(BrandId));
+            Console.WriteLine("TEST HERE");
+            foreach(ISkiis ski in skiisToDelete)
+            {
+                dao.RemoveSkiis(ski.Id);
+                Console.WriteLine("TEST HERE 2");
+            }
+            
+            dao.RemoveSkiBrand(BrandId);
+        } 
         public void RemoveSkiis(int SkiiId) => dao.RemoveSkiis(SkiiId);
 
         public void UpdateSkiBrand(ISkiBrand skiBrand) => dao.UpdateSkiBrand(skiBrand);
@@ -36,5 +115,6 @@ namespace BL
         // searching
         public IEnumerable<ISkiis> FindSkiisByModel(string model) => dao.GetAllSkiis().Where(skiis => skiis.Model.Contains(model));
         public IEnumerable<ISkiBrand> FindSkiBrandByName(string name) => dao.GetAllSkiBrands().Where(skiBrand => skiBrand.Name.Contains(name));
+
     }
 }
