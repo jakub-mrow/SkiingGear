@@ -89,12 +89,12 @@ namespace BL
 
         public void RemoveSkiBrand(int BrandId)
         {
-            IEnumerable<ISkiis> skiisToDelete = dao.GetAllSkiis().Where(skiis => skiis.Brand.BrandId.Equals(BrandId));
-            Console.WriteLine("TEST HERE");
+
+            var skiisToDelete = dao.GetAllSkiis().Where(skiis => skiis.Brand.BrandId.Equals(BrandId)).ToList();
+            //IEnumerable<ISkiis> skiisToDelete = dao.GetAllSkiis().Where(skiis => skiis.Brand.BrandId.Equals(BrandId));
             foreach(ISkiis ski in skiisToDelete)
             {
                 dao.RemoveSkiis(ski.Id);
-                Console.WriteLine("TEST HERE 2");
             }
             
             dao.RemoveSkiBrand(BrandId);

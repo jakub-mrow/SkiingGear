@@ -61,11 +61,11 @@ else
                 @foreach (var ski in displayedSkis)
                 {
                     <tr>
-                        <td>@ski.Model</td>
-                        <td>@ski.Brand.Name</td>
-                        <td>@ski.Type</td>
-                        <td>@ski.Length</td>
-                        <td>@ski.Price</td>
+                        <td>@(ski?.Model)</td>
+                        <td>@(ski?.Brand?.Name)</td>
+                        <td>@(ski?.Type)</td>
+                        <td>@(ski?.Length)</td>
+                        <td>@(ski?.Price)</td>
                         <td>
                             <button class="btn btn-danger" @onclick="() => RemoveSki(ski)">X</button>
                             <button class="btn btn-primary" @onclick="() => ShowUpdateForm(ski)">Edit</button>

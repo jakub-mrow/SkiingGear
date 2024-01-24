@@ -4,7 +4,8 @@ using SkiingGearBlazor.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-string dataSourcePath = "SkiingGear.DBSQL.dll";
+//string dataSourcePath = "SkiingGear.DBSQL.dll";
+string dataSourcePath = "DBMock.dll";
 
 // Add services to the container.
 builder.Services.AddRazorPages();
