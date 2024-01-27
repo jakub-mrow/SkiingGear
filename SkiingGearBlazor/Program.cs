@@ -4,14 +4,15 @@ using SkiingGearBlazor.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//string dataSourcePath = "SkiingGear.DBSQL.dll";
-string dataSourcePath = "DBMock.dll";
+
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<BL.BL>(blc =>
 {
+    var configuration = blc.GetRequiredService<IConfiguration>();
+    string dataSourcePath = configuration["DataSourcePath"];
     return BL.BL.GetInstance(dataSourcePath);
 });
 builder.Services.AddSingleton<SkiingGearBLService>();

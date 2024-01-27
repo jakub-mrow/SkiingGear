@@ -7,11 +7,14 @@ namespace DBMock
     {
         private List<ISkiis> skiis;
         private List<ISkiBrand> skiBrands;
+        private int brandsCount = 0;
+        private int skiCount = 0;
 
         public DAOMock()
         {
             skiis = new List<ISkiis>();
             skiBrands = new List<ISkiBrand>();
+            
 
             AddNewSkiBrand(new SkiBrandDBMock() { Country = "Germany", FoundationYear = 1960, Name = "Volkl" });
             AddNewSkiBrand(new SkiBrandDBMock() { Country = "Austria", FoundationYear = 1924, Name = "Atomic" });
@@ -77,13 +80,15 @@ namespace DBMock
 
         public ISkiBrand AddNewSkiBrand(ISkiBrand skiBrand)
         {
-            skiBrand.BrandId = skiBrands.Count + 1;
+            brandsCount += 1;
+            skiBrand.BrandId = brandsCount;
             skiBrands.Add(skiBrand);
             return skiBrand;
         }
         public ISkiis AddNewSkiis(ISkiis newSkiis)
         {
-            newSkiis.Id = skiis.Count + 1;
+            skiCount += 1;
+            newSkiis.Id = skiCount;
             skiis.Add(newSkiis);
             return newSkiis;
         }

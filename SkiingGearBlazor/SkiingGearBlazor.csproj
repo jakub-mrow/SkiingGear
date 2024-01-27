@@ -23,13 +23,13 @@
 		  <HintPath>..\BL\bin\Debug\net6.0\BL.dll</HintPath>
 		</Reference>
 		<Reference Include="Core">
-			<HintPath>..\BL\bin\Debug\net6.0\Core.dll</HintPath>
+		  <HintPath>..\BL\bin\Debug\net6.0\Core.dll</HintPath>
 		</Reference>
 		<Reference Include="DBMock">
 			<HintPath>..\BL\bin\Debug\net6.0\DBMock.dll</HintPath>
 		</Reference>
 		<Reference Include="Interfaces">
-			<HintPath>..\BL\bin\Debug\net6.0\Interfaces.dll</HintPath>
+		  <HintPath>..\BL\bin\Debug\net6.0\Interfaces.dll</HintPath>
 		</Reference>
 		<Reference Include="SkiingGear.DBSQL">
 			<HintPath>SkiingGear.DBSQL.dll</HintPath>
