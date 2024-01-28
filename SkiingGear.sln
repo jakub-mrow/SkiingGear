@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkiingGear", "SkiingGear\SkiingGear.csproj", "{E7A45D8D-C620-43B1-BA43-ABF5DFBC5F89}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interfaces", "Interfaces\Interfaces.csproj", "{6278C2B5-D54F-4F56-9407-5380A983ADC5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{D865539F-DFE0-44CF-B46B-18626E75A603}"
@@ -19,16 +17,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkiingGear.DBFile", "Skiing
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkiingGearBlazor", "SkiingGearBlazor\SkiingGearBlazor.csproj", "{F1C70FA2-6821-4E4E-AFE8-CFCF007318AD}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkiingGear", "..\..\SkiingGear\SkiingGear\SkiingGear.csproj", "{21CEB7D6-3069-4D5F-87E6-726DD3849C9C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E7A45D8D-C620-43B1-BA43-ABF5DFBC5F89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E7A45D8D-C620-43B1-BA43-ABF5DFBC5F89}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E7A45D8D-C620-43B1-BA43-ABF5DFBC5F89}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E7A45D8D-C620-43B1-BA43-ABF5DFBC5F89}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6278C2B5-D54F-4F56-9407-5380A983ADC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6278C2B5-D54F-4F56-9407-5380A983ADC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6278C2B5-D54F-4F56-9407-5380A983ADC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -57,6 +53,10 @@ Global
 		{F1C70FA2-6821-4E4E-AFE8-CFCF007318AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1C70FA2-6821-4E4E-AFE8-CFCF007318AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1C70FA2-6821-4E4E-AFE8-CFCF007318AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21CEB7D6-3069-4D5F-87E6-726DD3849C9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21CEB7D6-3069-4D5F-87E6-726DD3849C9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21CEB7D6-3069-4D5F-87E6-726DD3849C9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21CEB7D6-3069-4D5F-87E6-726DD3849C9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
