@@ -10,14 +10,13 @@ using SkiingGear.DBSQL;
 namespace SkiingGear.DBSQL.Migrations
 {
     [DbContext(typeof(DAOSQL))]
-    [Migration("20231228125736_InitialCreate")]
+    [Migration("20240122235317_InitialCreate")]
     partial class InitialCreate
     {
-        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
+            modelBuilder.HasAnnotation("ProductVersion", "6.0.0");
 
             modelBuilder.Entity("SkiingGear.DBSQL.SkiBrandDBSQL", b =>
                 {

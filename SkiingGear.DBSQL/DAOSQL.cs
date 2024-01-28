@@ -1,24 +1,43 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Interfaces;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using System.Reflection;
 
 namespace SkiingGear.DBSQL
 {
     public partial class DAOSQL : DbContext, IDAO
     {
-        public DbSet<SkiisDBSQL> Skiis { get; set; }
-        public DbSet<SkiBrandDBSQL> SkiBrands { get; set; }
         public string DbPath { get; }
+        private readonly DatabaseContext _context;
 
         public DAOSQL()
         {
             var folder = Environment.SpecialFolder.LocalApplicationData;
             var path = Environment.GetFolderPath(folder);
             DbPath = System.IO.Path.Join(path, "skiinggear.db");
+
+            _context = CreateDbContext(new string[] { });
+            _context.Database.OpenConnection();
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        ~DAOSQL()
         {
-            options.UseSqlite($"data source={DbPath}");
+            _context.Database.CloseConnection();
         }
+
+        private DatabaseContext? CreateDbContext(string[] strings)
+        {
+            var builder = new ConfigurationBuilder();
+            var configuration = builder.Build();
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseSqlite("Data Source=" + DbPath);
+            return new DatabaseContext(optionsBuilder.Options);
+        }
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder options)
+        //{
+        //    options.UseSqlite($"data source={DbPath}");
+        //}
     }
 }

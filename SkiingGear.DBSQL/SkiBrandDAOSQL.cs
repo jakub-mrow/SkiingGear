@@ -6,7 +6,7 @@ namespace SkiingGear.DBSQL
     {
         public IEnumerable<ISkiBrand> GetAllSkiBrands()
         {
-            return SkiBrands.Select(skiis => skiis.ToISkiBrand());
+            return _context.SkiBrands.Select(skiis => skiis.ToISkiBrand());
         }
 
         public ISkiBrand AddNewSkiBrand(ISkiBrand newSkiBrand)
@@ -18,28 +18,28 @@ namespace SkiingGear.DBSQL
                 FoundationYear = newSkiBrand.FoundationYear,
             };
 
-            Add(addedSkiBrand);
+            _context.Add(addedSkiBrand);
 
-            SaveChanges();
+            _context.SaveChanges();
             newSkiBrand.BrandId = addedSkiBrand.BrandId;
             return newSkiBrand;
         }
 
         public void RemoveSkiBrand(int skiBrandId)
         {
-            var skiBrand = SkiBrands.FirstOrDefault(skiBrand => skiBrand.BrandId.Equals(skiBrandId));
-            Remove(skiBrand);
-            SaveChanges();
+            var skiBrand = _context.SkiBrands.FirstOrDefault(skiBrand => skiBrand.BrandId.Equals(skiBrandId));
+            _context.Remove(skiBrand);
+            _context.SaveChanges();
         }
 
         public void UpdateSkiBrand(ISkiBrand newUpdatedSkiBrand)
         {
-            var skiBrand = SkiBrands.FirstOrDefault(skiBrand => skiBrand.BrandId.Equals(newUpdatedSkiBrand.BrandId));
+            var skiBrand = _context.SkiBrands.FirstOrDefault(skiBrand => skiBrand.BrandId.Equals(newUpdatedSkiBrand.BrandId));
             skiBrand.FoundationYear = newUpdatedSkiBrand.FoundationYear;
             skiBrand.Country = newUpdatedSkiBrand.Country;
             skiBrand.Name = newUpdatedSkiBrand.Name;
 
-            Entry(skiBrand).CurrentValues.SetValues(skiBrand);
+            _context.Entry(skiBrand).CurrentValues.SetValues(skiBrand);
         }
     }
 }

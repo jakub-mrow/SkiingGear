@@ -3,13 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkiingGear", "SkiingGear\SkiingGear.csproj", "{E7A45D8D-C620-43B1-BA43-ABF5DFBC5F89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkiingGear", "SkiingGear\SkiingGear.csproj", "{E7A45D8D-C620-43B1-BA43-ABF5DFBC5F89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "Interfaces\Interfaces.csproj", "{6278C2B5-D54F-4F56-9407-5380A983ADC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interfaces", "Interfaces\Interfaces.csproj", "{6278C2B5-D54F-4F56-9407-5380A983ADC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{D865539F-DFE0-44CF-B46B-18626E75A603}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{D865539F-DFE0-44CF-B46B-18626E75A603}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkiingGear.DBSQL", "SkiingGear.DBSQL\SkiingGear.DBSQL.csproj", "{D094ED61-4B41-4131-9EF0-4D820EB49D42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkiingGear.DBSQL", "SkiingGear.DBSQL\SkiingGear.DBSQL.csproj", "{D094ED61-4B41-4131-9EF0-4D820EB49D42}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL", "BL\BL.csproj", "{FBF7D295-1553-482D-865C-1D68ACFFC770}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBMock", "DBMock\DBMock.csproj", "{032196F5-BAF6-493B-B9DD-57998C89E52D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkiingGear.DBFile", "SkiingGear.DBFile\SkiingGear.DBFile.csproj", "{EFEAD22A-7614-44B8-AFDE-26A943403E2C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkiingGearBlazor", "SkiingGearBlazor\SkiingGearBlazor.csproj", "{F1C70FA2-6821-4E4E-AFE8-CFCF007318AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +41,22 @@ Global
 		{D094ED61-4B41-4131-9EF0-4D820EB49D42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D094ED61-4B41-4131-9EF0-4D820EB49D42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D094ED61-4B41-4131-9EF0-4D820EB49D42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBF7D295-1553-482D-865C-1D68ACFFC770}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBF7D295-1553-482D-865C-1D68ACFFC770}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBF7D295-1553-482D-865C-1D68ACFFC770}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBF7D295-1553-482D-865C-1D68ACFFC770}.Release|Any CPU.Build.0 = Release|Any CPU
+		{032196F5-BAF6-493B-B9DD-57998C89E52D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{032196F5-BAF6-493B-B9DD-57998C89E52D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{032196F5-BAF6-493B-B9DD-57998C89E52D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{032196F5-BAF6-493B-B9DD-57998C89E52D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFEAD22A-7614-44B8-AFDE-26A943403E2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFEAD22A-7614-44B8-AFDE-26A943403E2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFEAD22A-7614-44B8-AFDE-26A943403E2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFEAD22A-7614-44B8-AFDE-26A943403E2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1C70FA2-6821-4E4E-AFE8-CFCF007318AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1C70FA2-6821-4E4E-AFE8-CFCF007318AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1C70FA2-6821-4E4E-AFE8-CFCF007318AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1C70FA2-6821-4E4E-AFE8-CFCF007318AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

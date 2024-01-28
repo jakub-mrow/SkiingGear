@@ -7,22 +7,24 @@ namespace DBMock
     {
         private List<ISkiis> skiis;
         private List<ISkiBrand> skiBrands;
+        private int brandsCount = 0;
+        private int skiCount = 0;
 
         public DAOMock()
         {
             skiis = new List<ISkiis>();
             skiBrands = new List<ISkiBrand>();
+            
 
-            AddNewSkiBrand(new SkiBrandDBMock() { BrandId = 1, Country = "Germany", FoundationYear = 1960, Name = "Volkl" });
-            AddNewSkiBrand(new SkiBrandDBMock() { BrandId = 2, Country = "Austria", FoundationYear = 1924, Name = "Atomic" });
-            AddNewSkiBrand(new SkiBrandDBMock() { BrandId = 3, Country = "Switzerland", FoundationYear = 1947, Name = "Head" });
+            AddNewSkiBrand(new SkiBrandDBMock() { Country = "Germany", FoundationYear = 1960, Name = "Volkl" });
+            AddNewSkiBrand(new SkiBrandDBMock() { Country = "Austria", FoundationYear = 1924, Name = "Atomic" });
+            AddNewSkiBrand(new SkiBrandDBMock() { Country = "Switzerland", FoundationYear = 1947, Name = "Head" });
 
 
-            AddNewSkiis(new SkiisDBMock() { Id = 1, Length = 160, Price = 1100, Type = SkiType.AllMountain, Brand = skiBrands[0], Model = "RaceTiger" });
+            AddNewSkiis(new SkiisDBMock() { Length = 160, Price = 1100, Type = SkiType.AllMountain, Brand = skiBrands[0], Model = "RaceTiger" });
 
             AddNewSkiis(new SkiisDBMock()
             {
-                Id = 2,
                 Length = 165,
                 Price = 1200,
                 Type = SkiType.Slalom,
@@ -32,7 +34,6 @@ namespace DBMock
 
             AddNewSkiis(new SkiisDBMock()
             {
-                Id = 3,
                 Length = 170,
                 Price = 1300,
                 Type = SkiType.Freestyle,
@@ -42,7 +43,6 @@ namespace DBMock
 
             AddNewSkiis(new SkiisDBMock()
             {
-                Id = 4,
                 Length = 175,
                 Price = 1400,
                 Type = SkiType.AllMountain,
@@ -52,7 +52,6 @@ namespace DBMock
 
             AddNewSkiis(new SkiisDBMock()
             {
-                Id = 5,
                 Length = 160,
                 Price = 1200,
                 Type = SkiType.Slalom,
@@ -62,7 +61,6 @@ namespace DBMock
 
             AddNewSkiis(new SkiisDBMock()
             {
-                Id = 6,
                 Length = 165,
                 Price = 1100,
                 Type = SkiType.Freestyle,
@@ -82,17 +80,26 @@ namespace DBMock
 
         public ISkiBrand AddNewSkiBrand(ISkiBrand skiBrand)
         {
+            brandsCount += 1;
+            skiBrand.BrandId = brandsCount;
             skiBrands.Add(skiBrand);
             return skiBrand;
         }
         public ISkiis AddNewSkiis(ISkiis newSkiis)
         {
+            skiCount += 1;
+            newSkiis.Id = skiCount;
             skiis.Add(newSkiis);
             return newSkiis;
         }
 
         public void RemoveSkiBrand(int skiBrandId)
         {
+            //List<ISkiis> skiisToRemove = skiis.Where(s => s.Brand.BrandId.Equals(skiBrandId)).ToList();
+            //foreach (ISkiis ski in skiisToRemove)
+            //{
+            //    skiis.Remove(ski);
+            //}
             ISkiBrand skiBrandToRemove = skiBrands.First(brand => brand.BrandId.Equals(skiBrandId));
             skiBrands.Remove(skiBrandToRemove);
         }
