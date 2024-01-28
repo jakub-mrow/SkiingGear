@@ -14,6 +14,7 @@ namespace SkiingGear.ViewModels
         {
             try
             {
+                SkiBrands.Clear();
                 foreach (var brand in skiBrands)
                 {
                     SkiBrands.Add(new SkiBrandViewModel(brand));

@@ -44,6 +44,7 @@ namespace SkiingGear
             }
         }
 
+        #region Skiis
         private void SkiList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems.Count != 0)
@@ -52,9 +53,9 @@ namespace SkiingGear
             }
         }
 
-        private void ChangeSelectedSki(ViewModels.SkiViewModel skiModelViewModel)
+        private void ChangeSelectedSki(ViewModels.SkiViewModel skiViewModel)
         {
-            selectedSki = skiModelViewModel;
+            selectedSki = skiViewModel;
             DataContext = selectedSki;
         }
 
@@ -68,10 +69,92 @@ namespace SkiingGear
             }
             else
             {
-                MessageBox.Show("Aircraft is not selected!");
+                MessageBox.Show("Ski model is not selected!");
             }
         }
+
+        #endregion
+
+        #region Brands
+        private void SkiBrandsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count != 0)
+            {
+                ChangeSelectedBrand((ViewModels.SkiBrandViewModel)e.AddedItems[0]);
+            }
+        }
+
+        private void ChangeSelectedBrand(ViewModels.SkiBrandViewModel skiBrandViewModel)
+        {
+            selectedSkiBrand = skiBrandViewModel;
+            DataContext = selectedSkiBrand;
+        }
+
+        private void RemoveBrand(object sender, RoutedEventArgs e)
+        {
+            if (selectedSkiBrand != null)
+            {
+                bl.RemoveSkiBrand(selectedSkiBrand.SkiBrandId);
+                SkiBrandsList.UpdateList(bl.GetAllSkiBrands());
+                SkiList.UpdateList(bl.GetAllSkiis());
+                selectedSkiBrand = null;
+            }
+            else
+            {
+                MessageBox.Show("Ski brand is not selected!");
+            }
+        }
+
+
+        #endregion
+
+        #region search and filter 
+
+        private void RefreshFiltersBrands(object sender, RoutedEventArgs e)
+        {
+                SkiBrandsList.UpdateList(bl.GetAllSkiBrands());
+                brandSearchField.txtInput.Clear();
+        }
+
+        private void RefreshFiltersSkiis(object sender, RoutedEventArgs e)
+        {
+            SkiList.UpdateList(bl.GetAllSkiis());
+            skiSearchField.txtInput.Clear();
+        }
+
+        private void ConfirmSkiSearch(object sender, RoutedEventArgs e)
+        {
+
+            string filterValue = skiSearchField.txtInput.Text;
+
+            if (string.IsNullOrWhiteSpace(filterValue))
+            {
+                SkiList.UpdateList(bl.GetAllSkiis());
+                return;
+            }
+
+            SkiList.UpdateList(bl.FindSkiisByModel(filterValue));
+
+        }
+
+        private void ConfirmBrandSearch(object sender, RoutedEventArgs e)
+        {
+
+            string filterBrandValue = brandSearchField.txtInput.Text;
+
+            if (string.IsNullOrWhiteSpace(filterBrandValue))
+            {
+                SkiBrandsList.UpdateList(bl.GetAllSkiBrands());
+                return;
+            }
+
+            SkiBrandsList.UpdateList(bl.FindSkiBrandByName(filterBrandValue));
+
+        }
+        #endregion
     }
+
+
 
 
 

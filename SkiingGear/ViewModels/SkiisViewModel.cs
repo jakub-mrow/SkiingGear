@@ -13,6 +13,7 @@ namespace SkiingGear.ViewModels
         {
             try
             {
+                Skiis.Clear();
                 foreach (var ski in skiis)
                 {
                     Skiis.Add(new SkiViewModel(ski));

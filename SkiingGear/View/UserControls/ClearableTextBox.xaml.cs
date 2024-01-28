@@ -1,9 +1,10 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.ComponentModel; 
 
 namespace SkiingGear.View.UserControls
 {
-    public partial class ClearableTextBox : UserControl
+    public partial class ClearableTextBox : UserControl, INotifyPropertyChanged
     {
         public ClearableTextBox()
         {
@@ -15,13 +16,21 @@ namespace SkiingGear.View.UserControls
         public string Placeholder
         {
             get { return placeholder; }
-            set 
-            { 
-                placeholder = value;
-
-                ////OnPropertycahnge zmien to
-                tbPlaceholder.Text = placeholder;
+            set
+            {
+                if (placeholder != value)
+                {
+                    placeholder = value;
+                    OnPropertyChanged("Placeholder");
+                }
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private void btnClear_Click(object sender, RoutedEventArgs e)
