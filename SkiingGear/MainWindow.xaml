@@ -4,32 +4,32 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SkiingGear"
-        xmlns:userControls="clr-namespace:SkiingGear.View.UserControls"
         mc:Ignorable="d"
-        Title="Skiing Gear" Height="600" Width="900"
+        Title="Skiing Gear" Height="600" Width="850"
         Name="Window">
     <Grid>
         <TabControl Margin="0,10,0,0" Background="AliceBlue">
             <TabItem Header="Models" HorizontalAlignment="Left">
                 <Grid>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Background="AliceBlue" >
-                        <userControls:ClearableTextBox Width="250" Height="35" Placeholder="Search models" x:Name="skiSearchField" Margin="5,2,0,0"/>
-                        <Button Margin="5,0,0,0" HorizontalAlignment="Left" Height="30" Width="40" 
+                        <TextBlock Margin="5,10,0,0">Search model by name:</TextBlock>
+                        <TextBox  Margin="5" Padding="5" Width="200" Name="skiSearchField"/>
+                        <Button Margin="2,0,0,0" Padding="5" HorizontalAlignment="Left"  Width="50" 
                                 VerticalAlignment="Center" Click="ConfirmSkiSearch" Content="Search"/>
-                        <Button Margin="5,0,0,0" HorizontalAlignment="Left" Height="30" Width="80" 
-                                VerticalAlignment="Center" Content="Refresh filters" Click="RefreshFiltersSkiis"/>
-                        <Button Margin="40,0,0,0" HorizontalAlignment="Left" Height="30" Width="100" 
-                                VerticalAlignment="Center" Content="Add new model"/>
-                        <Button Margin="10,0,0,0" HorizontalAlignment="Left" Height="30" Width="140" 
-                                VerticalAlignment="Center" Content="Update selected model"/>
-                        <Button Margin="10,0,0,0" HorizontalAlignment="Left" Height="30" Width="140" 
-                                VerticalAlignment="Center" Click="RemoveSki" Content="Delete selected model"/>
+                        <TextBlock Margin="15,10,0,0">Filter models by:</TextBlock>
+                        <ComboBox Margin="3" Padding="2" Name="filterModels" MinWidth="80" SelectionChanged="FilterModel_SelectionChanged">
+                            <ComboBoxItem Content="Brand name" />
+                            <ComboBoxItem Content="Type" />
+                        </ComboBox>
+                        <ComboBox Margin="3" Padding="2" Name="filterModelsValue" MinWidth="100"/>
+                        <Button Margin="3" Padding="2" Click="ConfirmModelFilter">Apply filter</Button>
+                        <Button Margin="25,0,0,0" HorizontalAlignment="Left" Height="30" Width="50" 
+                            VerticalAlignment="Center" Content="Refresh" Click="RefreshFiltersSkiis"/>
                     </StackPanel>
-
                     <Grid Margin="0,40,0,0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.8*"/>
-                            <ColumnDefinition Width="0.2*"/>
+                            <ColumnDefinition Width="0.7*"/>
+                            <ColumnDefinition Width="0.3*"/>
                         </Grid.ColumnDefinitions>
 
                         <ListView Margin="0,5,0,10" Name="ModelList" SelectionChanged="SkiList_SelectionChanged" ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding ElementName=Window, Path=SkiList.Skiis}">
@@ -80,9 +80,13 @@
                             </ListView.View>
                         </ListView>
 
-                        <StackPanel Grid.Column="1" Margin="10,20,0,0">
-                            <CheckBox Content="Filter 1" Margin="0,0,0,5"/>
-                            <CheckBox Content="Filter 2" />
+                        <StackPanel Grid.Column="1" Margin="10,40,0,0">
+                            <Button Margin="0,0,0,15" HorizontalAlignment="Center" Height="30" Width="140" 
+                             VerticalAlignment="Center" Content="Add new model"/>
+                            <Button Margin="0,0,0,15" HorizontalAlignment="Center" Height="30" Width="140" 
+                             VerticalAlignment="Center" Content="Update selected model"/>
+                            <Button Margin="0,0,0,15" HorizontalAlignment="Center" Height="30" Width="140"
+                             VerticalAlignment="Center" Click="RemoveSki" Content="Delete selected model"/>
                         </StackPanel>
 
                     </Grid>
@@ -92,23 +96,25 @@
             <TabItem Header="Brands" HorizontalAlignment="Left">
                 <Grid>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Background="AliceBlue" >
-                        <userControls:ClearableTextBox Width="250" Height="35" Placeholder="Search models" Margin="5,2,0,0" x:Name="brandSearchField"/>
-                        <Button Margin="5,0,0,0" Click="ConfirmBrandSearch" HorizontalAlignment="Left" Height="30" Width="40" 
+                        <TextBlock Margin="5,10,0,0">Search brand by name:</TextBlock>
+                        <TextBox  Margin="5,2,0,0" Width="200" Height="35" Name="brandSearchField"/>
+                        <Button Margin="2,2,0,0" Click="ConfirmBrandSearch" HorizontalAlignment="Left" Height="35" Width="50" 
                     VerticalAlignment="Center" Content="Search"/>
-                        <Button Margin="5,0,0,0" HorizontalAlignment="Left" Height="30" Width="80" 
-                        VerticalAlignment="Center" Content="Refresh filters" Click="RefreshFiltersBrands"/>
-                        <Button Margin="40,0,0,0" HorizontalAlignment="Left" Height="30" Width="100" 
-                    VerticalAlignment="Center" Content="Add new brand"/>
-                        <Button Margin="10,0,0,0" HorizontalAlignment="Left" Height="30" Width="140" 
-                    VerticalAlignment="Center" Content="Update selected brand"/>
-                        <Button Margin="10,0,0,0" HorizontalAlignment="Left" Click="RemoveBrand" Height="30" Width="140" 
-                    VerticalAlignment="Center" Content="Delete selected brand"/>
+                        <TextBlock Margin="15,10,0,0">Filter brands by:</TextBlock>
+                        <ComboBox Margin="3" Padding="2" Name="filterBrands" MinWidth="80" SelectionChanged="FilterBrands_SelectionChanged">
+                            <ComboBoxItem Content="Country" />
+                            <ComboBoxItem Content="Year" />
+                        </ComboBox>
+                        <ComboBox Margin="3" Padding="2" Name="filterBrandsValue" MinWidth="100"/>
+                        <Button Margin="3" Padding="2" Click="ConfirmBrandFilter">Apply filter</Button>
+                        <Button Margin="25,0,0,0" HorizontalAlignment="Left" Height="30" Width="50" 
+    VerticalAlignment="Center" Content="Refresh" Click="RefreshFiltersBrands"/>
                     </StackPanel>
 
                     <Grid Margin="0,40,0,0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.8*"/>
-                            <ColumnDefinition Width="0.2*"/>
+                            <ColumnDefinition Width="0.7*"/>
+                            <ColumnDefinition Width="0.3*"/>
                         </Grid.ColumnDefinitions>
 
                         <ListView Margin="0,5,0,10" Name="BrandsList" SelectionChanged="SkiBrandsList_SelectionChanged" ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding ElementName=Window, Path=SkiBrandsList.SkiBrands}">
@@ -143,9 +149,13 @@
                             </ListView.View>
                         </ListView>
 
-                        <StackPanel Grid.Column="1" Margin="10,20,0,0">
-                            <CheckBox Content="Filter 1" Margin="0,0,0,5"/>
-                            <CheckBox Content="Filter 2" />
+                        <StackPanel Grid.Column="1" Margin="10,40,0,0">
+                            <Button Margin="0,0,0,15" HorizontalAlignment="Center" Height="30" Width="140" 
+                            VerticalAlignment="Center" Content="Add new brand"/>
+                            <Button Margin="0,0,0,15" HorizontalAlignment="Center" Height="30" Width="140" 
+                            VerticalAlignment="Center" Content="Update selected brand"/>
+                            <Button Margin="0,0,0,15" HorizontalAlignment="Center" Click="RemoveBrand" Height="30" Width="140" 
+                            VerticalAlignment="Center" Content="Delete selected brand"/>
                         </StackPanel>
 
                     </Grid>
