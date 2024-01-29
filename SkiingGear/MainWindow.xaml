@@ -17,16 +17,16 @@
                         <Button Margin="2,0,0,0" Padding="5" HorizontalAlignment="Left"  Width="50" 
                                 VerticalAlignment="Center" Click="ConfirmSkiSearch" Content="Search"/>
                         <TextBlock Margin="15,10,0,0">Filter models by:</TextBlock>
-                        <ComboBox Margin="3" Padding="2" Name="filterModels" MinWidth="80" SelectionChanged="FilterModel_SelectionChanged">
+                        <ComboBox Margin="4,8,0,8" Padding="2" Name="filterModels" Width="90" SelectionChanged="FilterModel_SelectionChanged">
                             <ComboBoxItem Content="Brand name" />
                             <ComboBoxItem Content="Type" />
                         </ComboBox>
-                        <ComboBox Margin="3" Padding="2" Name="filterModelsValue" MinWidth="100"/>
-                        <Button Margin="3" Padding="2" Click="ConfirmModelFilter">Apply filter</Button>
-                        <Button Margin="25,0,0,0" HorizontalAlignment="Left" Height="30" Width="50" 
+                        <ComboBox Margin="4,8,0,8" Padding="2" Name="filterModelsValue" MinWidth="100"/>
+                        <Button Margin="4,7,0,7" Padding="2" Click="ConfirmModelFilter">Apply filter</Button>
+                        <Button Margin="20,0,0,0" HorizontalAlignment="Left" Height="30" Width="50" 
                             VerticalAlignment="Center" Content="Refresh" Click="RefreshFiltersSkiis"/>
                     </StackPanel>
-                    <Grid Margin="0,40,0,0">
+                    <Grid Margin="0,-200,0,0" Height="250">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.7*"/>
                             <ColumnDefinition Width="0.3*"/>
@@ -97,21 +97,21 @@
                 <Grid>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Background="AliceBlue" >
                         <TextBlock Margin="5,10,0,0">Search brand by name:</TextBlock>
-                        <TextBox  Margin="5,2,0,0" Width="200" Height="35" Name="brandSearchField"/>
-                        <Button Margin="2,2,0,0" Click="ConfirmBrandSearch" HorizontalAlignment="Left" Height="35" Width="50" 
+                        <TextBox  Margin="5" Padding="5" Width="200" Name="brandSearchField"/>
+                        <Button Margin="2,0,0,0" Padding="5" Click="ConfirmBrandSearch" HorizontalAlignment="Left" Width="50" 
                     VerticalAlignment="Center" Content="Search"/>
                         <TextBlock Margin="15,10,0,0">Filter brands by:</TextBlock>
-                        <ComboBox Margin="3" Padding="2" Name="filterBrands" MinWidth="80" SelectionChanged="FilterBrands_SelectionChanged">
+                        <ComboBox Margin="4,8,0,8" Padding="2" Name="filterBrands" Width="90" SelectionChanged="FilterBrands_SelectionChanged">
                             <ComboBoxItem Content="Country" />
                             <ComboBoxItem Content="Year" />
                         </ComboBox>
-                        <ComboBox Margin="3" Padding="2" Name="filterBrandsValue" MinWidth="100"/>
-                        <Button Margin="3" Padding="2" Click="ConfirmBrandFilter">Apply filter</Button>
+                        <ComboBox Margin="4,8,0,8" Padding="2" Name="filterBrandsValue" MinWidth="100"/>
+                        <Button Margin="4,7,0,7" Padding="2" Click="ConfirmBrandFilter">Apply filter</Button>
                         <Button Margin="25,0,0,0" HorizontalAlignment="Left" Height="30" Width="50" 
     VerticalAlignment="Center" Content="Refresh" Click="RefreshFiltersBrands"/>
                     </StackPanel>
 
-                    <Grid Margin="0,40,0,0">
+                    <Grid Margin="0,-200,0,0" Height="250">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.7*"/>
                             <ColumnDefinition Width="0.3*"/>
