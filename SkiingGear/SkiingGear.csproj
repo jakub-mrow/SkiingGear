@@ -9,6 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BL\BL.csproj" />
+    <ProjectReference Include="..\Core\Core.csproj" />
+    <ProjectReference Include="..\DBMock\DBMock.csproj" />
+    <ProjectReference Include="..\Interfaces\Interfaces.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="BL">
       <HintPath>..\BL\bin\Debug\net6.0\BL.dll</HintPath>
     </Reference>

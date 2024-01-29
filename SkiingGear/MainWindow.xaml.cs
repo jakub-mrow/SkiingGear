@@ -1,8 +1,5 @@
-﻿using BL;
-using Core;
-using System.Data.Common;
-using System.Reflection;
-using System.Runtime.Intrinsics.Arm;
+﻿using Core;
+using DBMock;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -27,7 +24,6 @@ namespace SkiingGear
             SkiList.UpdateList(bl.GetAllSkiis());
 
             InitializeComponent();
-
 
         }
 
@@ -161,10 +157,10 @@ namespace SkiingGear
             switch (selectedFilter)
             {
                 case "Brand name":
-                    filterModelsValue.ItemsSource = bl.GetAllSkiis().Select(p => p.Brand.Name).Distinct();
+                    filterModelsValue.ItemsSource = bl.GetAllBrandNames();
                     break;
                 case "Type":
-                    filterModelsValue.ItemsSource = bl.GetAllSkiis().Select(p => p.Type.ToString()).Distinct();
+                    filterModelsValue.ItemsSource = bl.GetAllSkiTypes();
                     break;
                 default:
                     filterModelsValue.ItemsSource = null;
@@ -205,6 +201,33 @@ namespace SkiingGear
             else
             {
                 MessageBox.Show("Ski brand is not selected!");
+            }
+        }
+
+        private void AddBrand(object sender, RoutedEventArgs e)
+        {
+            var allBrandNames = bl.GetAllBrandNames();
+            BrandForm brandForm = new();
+
+            if (brandForm.ShowDialog() == true)
+            {
+                DBMock.SkiBrandDBMock brand;
+                try
+                {
+                    brand = new SkiBrandDBMock()
+                    {
+                        Name = brandForm.BrandName,
+                        Country = brandForm.BrandCountry,
+                        FoundationYear = brandForm.BrandFoundationYear
+                    };
+                }
+                catch
+                {
+                    MessageBox.Show("Error occurred, check your input values!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                bl.AddSkiBrand(brand);
+                SkiBrandsList.UpdateList(bl.GetAllSkiBrands());
             }
         }
 
@@ -289,10 +312,10 @@ namespace SkiingGear
             switch (selectedFilter)
             {
                 case "Country":
-                    filterBrandsValue.ItemsSource = bl.GetAllSkiBrands().Select(p => p.Country).Distinct();
+                    filterBrandsValue.ItemsSource = bl.GetAllCountries();  
                     break;
                 case "Year":
-                    filterBrandsValue.ItemsSource = bl.GetAllSkiBrands().Select(p => p.FoundationYear).Distinct();
+                    filterBrandsValue.ItemsSource = bl.GetAllFoundationYears();
                     break;
                 default:
                     filterBrandsValue.ItemsSource = null;
