@@ -87,6 +87,11 @@ namespace BL
         public IEnumerable<ISkiBrand> GetSkiBrand(int BrandId) => dao.GetAllSkiBrands().Where(skiBrand => skiBrand.BrandId.Equals(BrandId));
         public IEnumerable<ISkiis> GetSkiis(int SkiiId) => dao.GetAllSkiis().Where(skiis => skiis.Id.Equals(SkiiId));
 
+        public ISkiBrand GetSkiBrandByName(string brandName)
+        {
+            return dao.GetAllSkiBrands().FirstOrDefault(skiBrand => skiBrand.Name.Equals(brandName, StringComparison.OrdinalIgnoreCase));
+        }
+
         public IEnumerable<string> GetAllSkiTypes() => dao.GetAllSkiis().Select(p => p.Type.ToString()).Distinct();
 
         public IEnumerable<string> GetAllCountries() => dao.GetAllSkiBrands().Select(p => p.Country).Distinct();

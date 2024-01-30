@@ -82,9 +82,9 @@
 
                         <StackPanel Grid.Column="1" Margin="10,40,0,0">
                             <Button Margin="0,0,0,15" HorizontalAlignment="Center" Height="30" Width="140" 
-                             VerticalAlignment="Center" Content="Add new model"/>
+                             VerticalAlignment="Center" Click="AddSki" Content="Add new model"/>
                             <Button Margin="0,0,0,15" HorizontalAlignment="Center" Height="30" Width="140" 
-                             VerticalAlignment="Center" Content="Update selected model"/>
+                             VerticalAlignment="Center" Click="UpdateSki" Content="Update selected model"/>
                             <Button Margin="0,0,0,15" HorizontalAlignment="Center" Height="30" Width="140"
                              VerticalAlignment="Center" Click="RemoveSki" Content="Delete selected model"/>
                         </StackPanel>
@@ -153,7 +153,7 @@
                             <Button Margin="0,0,0,15" HorizontalAlignment="Center" Height="30" Width="140" 
                             VerticalAlignment="Center" Click="AddBrand" Content="Add new brand"/>
                             <Button Margin="0,0,0,15" HorizontalAlignment="Center" Height="30" Width="140" 
-                            VerticalAlignment="Center" Content="Update selected brand"/>
+                            VerticalAlignment="Center" Click="UpdateBrand" Content="Update selected brand"/>
                             <Button Margin="0,0,0,15" HorizontalAlignment="Center" Click="RemoveBrand" Height="30" Width="140" 
                             VerticalAlignment="Center" Content="Delete selected brand"/>
                         </StackPanel>

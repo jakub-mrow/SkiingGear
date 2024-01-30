@@ -1,4 +1,5 @@
-﻿using Core;
+﻿using BL;
+using Core;
 using DBMock;
 using System.Windows;
 using System.Windows.Controls;
@@ -70,6 +71,66 @@ namespace SkiingGear
             else
             {
                 MessageBox.Show("Ski model is not selected!");
+            }
+        }
+
+        private void UpdateSki(object sender, RoutedEventArgs e)
+        {
+            if (selectedSki != null)
+            {
+                SkiForm skiForm = new(
+                    bl.GetAllBrandNames(),
+                    bl.GetSkiis(selectedSki.SkiId).First()
+                );
+
+                if (skiForm.ShowDialog() == true)
+                {
+                    bl.UpdateSkiis(new SkiisDBMock()
+                    {
+                        Id = selectedSki.SkiId,
+                        Model = skiForm.SkiModel,
+                        Brand = bl.GetSkiBrandByName(skiForm.SkiBrand),
+                        Type = skiForm.SkiType,
+                        Length = skiForm.SkiLength,
+                        Price = skiForm.SkiPrice,
+                    });
+
+                    SkiList.UpdateList(bl.GetAllSkiis());
+                    ChangeSelectedSki(null);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Aircraft is not selected!");
+            }
+        }
+
+        private void AddSki(object sender, RoutedEventArgs e)
+        {
+            var allBrandsNames = bl.GetAllBrandNames();
+            SkiForm skiForm = new(allBrandsNames);
+
+            if (skiForm.ShowDialog() == true)
+            {
+                SkiisDBMock ski;
+                try
+                {
+                    ski = new SkiisDBMock()
+                    {
+                       Model = skiForm.SkiModel,
+                       Brand = bl.GetSkiBrandByName(skiForm.SkiBrand), 
+                       Type = skiForm.SkiType,
+                       Length = skiForm.SkiLength,
+                       Price = skiForm.SkiPrice,
+                    };
+                }
+                catch
+                {
+                    MessageBox.Show("Error occurred, check your input values!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                bl.AddSkiis(ski);
+                SkiList.UpdateList(bl.GetAllSkiis());
             }
         }
 
@@ -206,12 +267,12 @@ namespace SkiingGear
 
         private void AddBrand(object sender, RoutedEventArgs e)
         {
-            var allBrandNames = bl.GetAllBrandNames();
+            
             BrandForm brandForm = new();
 
             if (brandForm.ShowDialog() == true)
             {
-                DBMock.SkiBrandDBMock brand;
+                SkiBrandDBMock brand;
                 try
                 {
                     brand = new SkiBrandDBMock()
@@ -228,6 +289,34 @@ namespace SkiingGear
                 }
                 bl.AddSkiBrand(brand);
                 SkiBrandsList.UpdateList(bl.GetAllSkiBrands());
+            }
+        }
+
+        private void UpdateBrand(object sender, RoutedEventArgs e)
+        {
+            if (selectedSkiBrand != null)
+            {
+                BrandForm brandForm = new(
+                    bl.GetSkiBrand(selectedSkiBrand.SkiBrandId).First()
+                );
+
+                if (brandForm.ShowDialog() == true)
+                {
+                    bl.UpdateSkiBrand(new SkiBrandDBMock()
+                    {
+                        BrandId = selectedSkiBrand.SkiBrandId,
+                        Name = brandForm.BrandName,
+                        Country = brandForm.BrandCountry,
+                        FoundationYear = brandForm.BrandFoundationYear
+                    });
+
+                    SkiBrandsList.UpdateList(bl.GetAllSkiBrands());
+                    ChangeSelectedBrand(null);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Airbase is not selected!");
             }
         }
 
