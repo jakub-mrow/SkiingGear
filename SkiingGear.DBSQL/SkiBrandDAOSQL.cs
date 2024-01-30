@@ -1,6 +1,6 @@
-﻿using Interfaces;
+﻿using MularczykMrowczynski.SkiingGear.Interfaces;
 
-namespace SkiingGear.DBSQL
+namespace MularczykMrowczynski.SkiingGear.SkiingGear.DBSQL
 {
     public partial class DAOSQL
     {

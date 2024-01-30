@@ -1,10 +1,9 @@
-﻿using BL;
-using Core;
-using DBMock;
+﻿using MularczykMrowczynski.SkiingGear.Core;
+using MularczykMrowczynski.SkiingGear.DBMock;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace SkiingGear
+namespace MularczykMrowczynski.SkiingGear.SkiingGear
 {
     public partial class MainWindow : Window
     {
@@ -16,7 +15,8 @@ namespace SkiingGear
 
         private readonly BL.BL bl;
 
-        private string selectedDataSource = "DBMock.dll";
+        private string selectedDataSource = "SkiingGear.DBSQL.dll";
+        //private string selectedDataSource = "DBMock.dll";
         public MainWindow()
         {
             bl = new BL.BL(selectedDataSource);
@@ -32,10 +32,10 @@ namespace SkiingGear
         {
             try
             {
-                bl.LoadLibrary("DBMock.dll");
+                bl.LoadLibrary("SkiingGear.DBSQL.dll");
                 SkiBrandsList.UpdateList(bl.GetAllSkiBrands());
                 SkiList.UpdateList(bl.GetAllSkiis());
-                selectedDataSource = "DBMock.dll";
+                selectedDataSource = "SkiingGear.DBSQL.dll";
             }
             catch
             {

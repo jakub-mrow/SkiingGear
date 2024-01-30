@@ -1,9 +1,9 @@
-﻿using Interfaces;
+﻿using MularczykMrowczynski.SkiingGear.Interfaces;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 
-namespace SkiingGear
+namespace MularczykMrowczynski.SkiingGear.SkiingGear
 {
     public partial class BrandForm : Window
     {

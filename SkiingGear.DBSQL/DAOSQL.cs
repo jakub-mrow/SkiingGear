@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Interfaces;
+using MularczykMrowczynski.SkiingGear.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using System.Reflection;
 
-namespace SkiingGear.DBSQL
+namespace MularczykMrowczynski.SkiingGear.SkiingGear.DBSQL
 {
     public partial class DAOSQL : DbContext, IDAO
     {

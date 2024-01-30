@@ -19,21 +19,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Reference Include="BL">
-		  <HintPath>..\BL\bin\Debug\net6.0\BL.dll</HintPath>
-		</Reference>
-		<Reference Include="Core">
-		  <HintPath>..\BL\bin\Debug\net6.0\Core.dll</HintPath>
-		</Reference>
-		<Reference Include="DBMock">
-			<HintPath>..\BL\bin\Debug\net6.0\DBMock.dll</HintPath>
-		</Reference>
-		<Reference Include="Interfaces">
-		  <HintPath>..\BL\bin\Debug\net6.0\Interfaces.dll</HintPath>
-		</Reference>
-		<Reference Include="SkiingGear.DBSQL">
-			<HintPath>SkiingGear.DBSQL.dll</HintPath>
-		</Reference>
+		<ProjectReference Include="..\BL\BL.csproj" />
+		<ProjectReference Include="..\Core\Core.csproj" />
+		<ProjectReference Include="..\DBMock\DBMock.csproj" />
+		<ProjectReference Include="..\Interfaces\Interfaces.csproj" />
 	</ItemGroup>
 
 </Project>

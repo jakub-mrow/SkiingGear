@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SkiingGear.DBSQL;
+using MularczykMrowczynski.SkiingGear.SkiingGear.DBSQL;
 
 #nullable disable
 

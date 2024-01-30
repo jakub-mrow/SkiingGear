@@ -1,5 +1,5 @@
-﻿using Core;
-using Interfaces;
+﻿using MularczykMrowczynski.SkiingGear.Core;
+using MularczykMrowczynski.SkiingGear.Interfaces;
 
 namespace SkiingGearBlazor.Data
 {

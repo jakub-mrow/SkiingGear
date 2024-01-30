@@ -1,4 +1,4 @@
-﻿namespace Core
+﻿namespace MularczykMrowczynski.SkiingGear.Core
 {
     public enum SkiType
     {

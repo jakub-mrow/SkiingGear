@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using SkiingGearBlazor.Data;
+using MularczykMrowczynski.SkiingGear.BL;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,11 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<BL.BL>(blc =>
+builder.Services.AddSingleton<BL>(blc =>
 {
     var configuration = blc.GetRequiredService<IConfiguration>();
     string dataSourcePath = configuration["DataSourcePath"];
-    return BL.BL.GetInstance(dataSourcePath);
+    return BL.GetInstance(dataSourcePath);
 });
 builder.Services.AddSingleton<SkiingGearBLService>();
 

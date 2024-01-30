@@ -1,6 +1,6 @@
-﻿using Interfaces;
+﻿using MularczykMrowczynski.SkiingGear.Interfaces;
 
-namespace DBMock
+namespace MularczykMrowczynski.SkiingGear.DBMock
 {
     public class SkiBrandDBMock: ISkiBrand
     {

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SkiingGear.DBSQL
+namespace MularczykMrowczynski.SkiingGear.SkiingGear.DBSQL
 {
     public class DatabaseContext: DbContext
     {

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
-using Interfaces;
+using MularczykMrowczynski.SkiingGear.Interfaces;
 
 
-namespace SkiingGear.ViewModels
+namespace MularczykMrowczynski.SkiingGear.SkiingGear.ViewModels
 {
     public class SkiBrandViewModel : INotifyPropertyChanged
     {

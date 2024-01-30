@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Interfaces;
-using Core;
+using MularczykMrowczynski.SkiingGear.Interfaces;
+using MularczykMrowczynski.SkiingGear.Core;
 
-namespace SkiingGear.DBSQL
+namespace MularczykMrowczynski.SkiingGear.SkiingGear.DBSQL
 {
     public class SkiisDBSQL
     {

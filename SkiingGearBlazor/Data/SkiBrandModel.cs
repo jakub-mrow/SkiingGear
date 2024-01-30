@@ -1,4 +1,4 @@
-﻿using Interfaces;
+﻿using MularczykMrowczynski.SkiingGear.Interfaces;
 
 namespace SkiingGearBlazor.Data
 {

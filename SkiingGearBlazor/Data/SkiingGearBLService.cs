@@ -1,15 +1,15 @@
-﻿using BL;
-using Core;
-using Interfaces;
+﻿using MularczykMrowczynski.SkiingGear.BL;
+using MularczykMrowczynski.SkiingGear.Core;
+using MularczykMrowczynski.SkiingGear.Interfaces;
 
 
 namespace SkiingGearBlazor.Data
 {
     public class SkiingGearBLService
     {
-        private BL.BL businessLayer;
+        private BL businessLayer;
 
-        public SkiingGearBLService(BL.BL bl)
+        public SkiingGearBLService(BL bl)
         {
             businessLayer = bl;
         }

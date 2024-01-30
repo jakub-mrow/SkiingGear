@@ -1,7 +1,7 @@
-﻿using Core;
+﻿using MularczykMrowczynski.SkiingGear.Core;
 
 
-namespace Interfaces
+namespace MularczykMrowczynski.SkiingGear.Interfaces
 {
     public interface ISkiis
     {

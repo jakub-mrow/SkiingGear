@@ -5,29 +5,36 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+	  <RootNamespace>MularczykMrowczynski.SkiingGear.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\BL\BL.csproj" />
-    <ProjectReference Include="..\Core\Core.csproj" />
-    <ProjectReference Include="..\DBMock\DBMock.csproj" />
-    <ProjectReference Include="..\Interfaces\Interfaces.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Data.Sqlite" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Data.Sqlite.Core" Version="6.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.0">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+	</ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="BL">
-      <HintPath>..\BL\bin\Debug\net6.0\BL.dll</HintPath>
-    </Reference>
-    <Reference Include="Core">
-      <HintPath>..\BL\bin\Debug\net6.0\Core.dll</HintPath>
-    </Reference>
-    <Reference Include="DBMock">
-      <HintPath>..\BL\bin\Debug\net6.0\DBMock.dll</HintPath>
-    </Reference>
-    <Reference Include="Interfaces">
-      <HintPath>..\BL\bin\Debug\net6.0\Interfaces.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\BL\BL.csproj" />
+	  <ProjectReference Include="..\Core\Core.csproj" />
+	  <ProjectReference Include="..\DBMock\DBMock.csproj" />
+	  <ProjectReference Include="..\Interfaces\Interfaces.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="SkiingGear.DBSQL">
+	    <HintPath>SkiingGear.DBSQL.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
 
 </Project>

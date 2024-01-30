@@ -1,9 +1,9 @@
-﻿using Core;
+﻿using MularczykMrowczynski.SkiingGear.Core;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 
-namespace SkiingGear
+namespace MularczykMrowczynski.SkiingGear.SkiingGear
 {
     public partial class SkiForm : Window
     {

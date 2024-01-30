@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace SkiingGear
+namespace MularczykMrowczynski.SkiingGear.SkiingGear
 {
     /// <summary>
     /// Interaction logic for App.xaml

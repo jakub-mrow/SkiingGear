@@ -1,6 +1,6 @@
-﻿using Interfaces;
+﻿using MularczykMrowczynski.SkiingGear.Interfaces;
 
-namespace SkiingGear.DBFile
+namespace MularczykMrowczynski.SkiingGear.SkiingGear.DBFile
 {
     [Serializable]
     internal class SkiBrandDBFile: ISkiBrand

@@ -1,4 +1,4 @@
-﻿namespace Interfaces
+﻿namespace MularczykMrowczynski.SkiingGear.Interfaces
 {
     public interface ISkiBrand
     {

@@ -1,7 +1,7 @@
-﻿using Core;
-using Interfaces;
+﻿using MularczykMrowczynski.SkiingGear.Core;
+using MularczykMrowczynski.SkiingGear.Interfaces;
 
-namespace DBMock
+namespace MularczykMrowczynski.SkiingGear.DBMock
 {
     public class SkiisDBMock: ISkiis
     {

@@ -1,9 +1,9 @@
-﻿<Window x:Class="SkiingGear.SkiForm"
+﻿<Window x:Class="MularczykMrowczynski.SkiingGear.SkiingGear.SkiForm"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SkiingGear"
+        xmlns:local="clr-namespace:MularczykMrowczynski.SkiingGear.SkiingGear"
         mc:Ignorable="d"
         Title="Ski Form"  SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen"
         ContentRendered="Window_ContentRendered">

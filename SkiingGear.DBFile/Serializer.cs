@@ -1,7 +1,7 @@
 ﻿using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 
-namespace SkiingGear.DBFile
+namespace MularczykMrowczynski.SkiingGear.SkiingGear.DBFile
 {
     internal class Serializer
     {

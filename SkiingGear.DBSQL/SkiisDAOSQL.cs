@@ -1,11 +1,11 @@
-﻿using Interfaces;
+﻿using MularczykMrowczynski.SkiingGear.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SkiingGear.DBSQL
+namespace MularczykMrowczynski.SkiingGear.SkiingGear.DBSQL
 {
     public partial class DAOSQL
     {

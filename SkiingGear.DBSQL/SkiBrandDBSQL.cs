@@ -1,8 +1,8 @@
-﻿using Interfaces;
+﻿using MularczykMrowczynski.SkiingGear.Interfaces;
 using System.ComponentModel.DataAnnotations;
 
 
-namespace SkiingGear.DBSQL
+namespace MularczykMrowczynski.SkiingGear.SkiingGear.DBSQL
 {
     public class SkiBrandDBSQL
     {

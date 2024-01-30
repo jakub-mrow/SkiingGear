@@ -1,7 +1,7 @@
-﻿using Core;
-using Interfaces;
+﻿using MularczykMrowczynski.SkiingGear.Core;
+using MularczykMrowczynski.SkiingGear.Interfaces;
 
-namespace SkiingGear.DBFile
+namespace MularczykMrowczynski.SkiingGear.SkiingGear.DBFile
 {
     [Serializable]
     internal class SkiisDBFile: ISkiis

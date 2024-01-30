@@ -1,8 +1,8 @@
-﻿using Core;
-using Interfaces;
+﻿using MularczykMrowczynski.SkiingGear.Interfaces;
+using MularczykMrowczynski.SkiingGear.Core;
 using System.Reflection;
 
-namespace BL
+namespace MularczykMrowczynski.SkiingGear.BL
 {
     public class BL
     {
